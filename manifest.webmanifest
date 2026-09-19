@@ -1,6 +1,7 @@
 {
   "name": "Pose Cognitive Trainer",
   "short_name": "Pose Trainer",
+  "version": "1.0.0",
   "description": "A bilingual, timed pose-number cognitive trainer.",
   "start_url": "./",
   "scope": "./",

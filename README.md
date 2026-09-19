@@ -1,5 +1,7 @@
 # Pose Cognitive Trainer
 
+Current version: **V1.0.0**
+
 A responsive English/Hebrew Progressive Web App that presents shuffled pose numbers on a configurable active-time schedule.
 
 ## Run locally
