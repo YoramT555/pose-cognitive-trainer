@@ -1,0 +1,14 @@
+{
+  "name": "Pose Cognitive Trainer",
+  "short_name": "Pose Trainer",
+  "description": "A bilingual, timed pose-number cognitive trainer.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eef2f8",
+  "theme_color": "#3157d5",
+  "orientation": "any",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

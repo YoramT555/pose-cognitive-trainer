@@ -1,0 +1,4 @@
+.chrome-test-profile*/
+__pycache__/
+*.pyc
+mobile-preview.png
