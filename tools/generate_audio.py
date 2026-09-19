@@ -1,5 +1,6 @@
 import asyncio
 from pathlib import Path
+import sys
 
 import truststore
 
@@ -15,7 +16,7 @@ CONTENT = {
             **{f"number-{n}": word for n, word in enumerate(
                 ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
             ) if n},
-            "switchCommand": "Switch poses",
+            "switchCommand": "Switch position",
             "finished": "Finished",
         },
     },
@@ -25,7 +26,7 @@ CONTENT = {
             **{f"number-{n}": word for n, word in enumerate(
                 ["", "אחת", "שתיים", "שלוש", "ארבע", "חמש", "שש", "שבע", "שמונה", "תשע", "עשר"]
             ) if n},
-            "switchCommand": "החליפו תנוחה",
+            "switchCommand": "החלף מנח",
             "finished": "הסתיים",
         },
     },
@@ -33,10 +34,13 @@ CONTENT = {
 
 
 async def main():
+    requested = set(sys.argv[1:])
     for language, config in CONTENT.items():
         target = ROOT / language
         target.mkdir(parents=True, exist_ok=True)
         for name, text in config["items"].items():
+            if requested and name not in requested:
+                continue
             await edge_tts.Communicate(text, config["voice"], rate="-8%").save(target / f"{name}.mp3")
             print(f"Created {language}/{name}.mp3")
 

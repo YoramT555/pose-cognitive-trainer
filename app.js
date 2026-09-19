@@ -5,8 +5,8 @@ const SWITCH_MS = 1000;
 const STORAGE_KEY = "pose-cognitive-trainer-settings-v1";
 
 const copy = {
-  en: { install:"Install", readyLabel:"READY", setupTitle:"Set up your session", setupSubtitle:"Choose your pace, then get ready to move.", poseCount:"Pose number", totalTime:"Total time", poseInterval:"Time between poses", seconds:"seconds", switchPoses:"Switch poses", switchHelp:"Announce after every complete set", start:"Start session", preparing:"Preparing", preparingAudio:"Preparing voice…", audioError:"Voice preparation failed. Please restart the app and try again.", getReady:"Get ready", active:"Active", switching:"Switching", paused:"Paused", timeRemaining:"Time remaining", currentSet:"Current set", pause:"Pause", resume:"Resume", stop:"Stop", finished:"Finished", finishedHelp:"Session complete. Well done.", newSession:"New session", invalid:"Please enter values within the indicated ranges.", switchCommand:"Switch poses" },
-  he: { install:"התקנה", readyLabel:"מוכן", setupTitle:"הגדרת האימון", setupSubtitle:"בחרו את הקצב והתכוננו לתנועה.", poseCount:"מספר תנוחה", totalTime:"זמן כולל", poseInterval:"זמן בין תנוחות", seconds:"שניות", switchPoses:"החלפת תנוחה", switchHelp:"הכרזה לאחר השלמת כל סדרה", start:"התחלת אימון", preparing:"מתכוננים", preparingAudio:"מכין קול…", audioError:"הכנת הקול נכשלה. יש להפעיל מחדש את היישום ולנסות שוב.", getReady:"התכוננו", active:"פעיל", switching:"מחליפים תנוחה", paused:"מושהה", timeRemaining:"זמן שנותר", currentSet:"סדרה נוכחית", pause:"השהיה", resume:"המשך", stop:"עצירה", finished:"הסתיים", finishedHelp:"האימון הושלם. כל הכבוד.", newSession:"אימון חדש", invalid:"יש להזין ערכים בטווחים המוצגים.", switchCommand:"החליפו תנוחה" }
+  en: { install:"Install", readyLabel:"READY", setupTitle:"Set up your session", setupSubtitle:"Choose your pace, then get ready to move.", numberOfPoses:"Number of poses", poseNumber:"Pose number", totalTime:"Total time", poseInterval:"Time between poses", seconds:"seconds", switchPosition:"Switch position", switchHelp:"Announce after every complete set", start:"Start session", preparing:"Preparing", preparingAudio:"Preparing voice…", audioError:"Voice preparation failed. Please restart the app and try again.", getReady:"Get ready", active:"Active", switching:"Switching", paused:"Paused", timeRemaining:"Time remaining", currentSet:"Current set", pause:"Pause", resume:"Resume", stop:"Stop", finished:"Finished", finishedHelp:"Session complete. Well done.", newSession:"New session", invalid:"Please enter values within the indicated ranges.", switchCommand:"Switch position" },
+  he: { install:"התקנה", readyLabel:"מוכן", setupTitle:"הגדרת האימון", setupSubtitle:"בחרו את הקצב והתכוננו לתנועה.", numberOfPoses:"מספר תנוחות", poseNumber:"מספר תנוחה", totalTime:"זמן כולל", poseInterval:"זמן בין תנוחות", seconds:"שניות", switchPosition:"החלפת מנח", switchHelp:"הכרזה לאחר השלמת כל סדרה", start:"התחלת אימון", preparing:"מתכוננים", preparingAudio:"מכין קול…", audioError:"הכנת הקול נכשלה. יש להפעיל מחדש את היישום ולנסות שוב.", getReady:"התכוננו", active:"פעיל", switching:"מחליפים מנח", paused:"מושהה", timeRemaining:"זמן שנותר", currentSet:"סדרה נוכחית", pause:"השהיה", resume:"המשך", stop:"עצירה", finished:"הסתיים", finishedHelp:"האימון הושלם. כל הכבוד.", newSession:"אימון חדש", invalid:"יש להזין ערכים בטווחים המוצגים.", switchCommand:"החלף מנח" }
 };
 
 const numberWords = {
@@ -264,7 +264,7 @@ async function presentPose() {
   phase = "active";
   activeStartedAt = performance.now();
   setStatus("active");
-  elements.instruction.textContent = copy[language].poseCount;
+  elements.instruction.textContent = copy[language].poseNumber;
   elements.mainDisplay.classList.remove("word");
   const pose = set[setIndex];
   elements.mainDisplay.textContent = pose;

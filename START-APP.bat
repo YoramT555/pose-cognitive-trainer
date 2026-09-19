@@ -12,12 +12,12 @@ if errorlevel 1 (
 
 echo Starting Pose Cognitive Trainer...
 echo.
-echo The application will open at http://localhost:8080/?v=1.0.0
+echo The application will open at http://localhost:8080/?v=1.0.1
 echo Keep this window open while using the application.
 echo Close this window to stop the local application.
 echo.
 
-start "" "http://localhost:8080/?v=1.0.0"
+start "" "http://localhost:8080/?v=1.0.1"
 python -m http.server 8080
 
 if errorlevel 1 (

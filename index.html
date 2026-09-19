@@ -7,7 +7,7 @@
   <meta name="description" content="A bilingual, timed pose-number cognitive trainer.">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=1.0.0">
+  <link rel="stylesheet" href="styles.css?v=1.0.1">
   <title>Pose Cognitive Trainer</title>
 </head>
 <body>
@@ -16,7 +16,7 @@
       <a class="brand" href="./" aria-label="Pose Cognitive Trainer home">
         <span class="brand-icon" aria-hidden="true">◆</span>
         <span class="brand-name">Pose Cognitive Trainer</span>
-        <span class="app-version">V1.0.0</span>
+        <span class="app-version">V1.0.1</span>
       </a>
       <div class="header-actions">
         <button id="installButton" class="quiet-button" type="button" hidden data-i18n="install">Install</button>
@@ -38,7 +38,7 @@
         <form id="settingsForm" novalidate>
           <div class="setting-grid">
             <label class="setting-card" for="poseCount">
-              <span data-i18n="poseCount">Pose number</span>
+              <span data-i18n="numberOfPoses">Number of poses</span>
               <span class="input-line"><input id="poseCount" name="poseCount" type="number" min="1" max="10" value="4" inputmode="numeric" required><small>1–10</small></span>
             </label>
             <label class="setting-card" for="totalTime">
@@ -52,7 +52,7 @@
           </div>
 
           <label class="switch-card" for="switchEnabled">
-            <span><strong data-i18n="switchPoses">Switch poses</strong><small data-i18n="switchHelp">Announce after every complete set</small></span>
+            <span><strong data-i18n="switchPosition">Switch position</strong><small data-i18n="switchHelp">Announce after every complete set</small></span>
             <input id="switchEnabled" name="switchEnabled" type="checkbox" role="switch" checked>
           </label>
 
@@ -84,6 +84,6 @@
       </section>
     </main>
   </div>
-  <script type="module" src="app.js?v=1.0.0"></script>
+  <script type="module" src="app.js?v=1.0.1"></script>
 </body>
 </html>
