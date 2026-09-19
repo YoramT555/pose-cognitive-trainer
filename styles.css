@@ -32,6 +32,8 @@ button:focus-visible, input:focus-visible { outline: 3px solid color-mix(in srgb
 .install-dialog form { padding: 1.4rem; }
 .install-dialog h2 { margin: 0; font-size: 1.4rem; }
 .install-dialog p { margin: .85rem 0 1.2rem; color: var(--muted); line-height: 1.55; }
+.dialog-actions { display: grid; gap: .7rem; }
+.dialog-actions .secondary-button { width: 100%; }
 .view { padding: clamp(1.2rem, 5vw, 3.2rem); }
 .intro { margin-bottom: 1.6rem; }
 .eyebrow { margin: 0 0 .5rem; color: var(--primary); font-size: .78rem; font-weight: 800; letter-spacing: .12em; }
@@ -86,7 +88,7 @@ input[role="switch"]:checked::after { transform: translateX(22px); }
   .setting-card { flex-direction: row; align-items: center; justify-content: space-between; }
   .view { padding-bottom: calc(1.2rem + env(safe-area-inset-bottom)); }
 }
-@media (max-width: 390px) {
+@media (max-width: 520px) {
   .app-header { align-items: flex-start; }
   .header-actions { flex-direction: column-reverse; align-items: flex-end; }
   .brand { gap: .45rem; }

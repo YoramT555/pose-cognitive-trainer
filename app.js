@@ -5,8 +5,8 @@ const SWITCH_MS = 1000;
 const STORAGE_KEY = "pose-cognitive-trainer-settings-v1";
 
 const copy = {
-  en: { install:"Install", installTitle:"Install the app", installIos:"On iPhone or iPad, open this page in Safari. Tap Share, choose Add to Home Screen, turn on Open as Web App, then tap Add.", installManual:"Open the browser menu and choose Install app or Add to Home screen. If the app is already installed, open it from your home screen or the Windows Start menu.", close:"Close", readyLabel:"READY", setupTitle:"Set up your session", setupSubtitle:"Choose your pace, then get ready to move.", numberOfPoses:"Number of poses", poseNumber:"Pose number", totalTime:"Total time", poseInterval:"Time between poses", seconds:"seconds", switchPosition:"Switch position", switchHelp:"Announce after every complete set", start:"Start session", preparing:"Preparing", preparingAudio:"Preparing voice…", audioError:"Voice preparation failed. Please restart the app and try again.", getReady:"Get ready", active:"Active", switching:"Switching", paused:"Paused", timeRemaining:"Time remaining", currentSet:"Current set", pause:"Pause", resume:"Resume", stop:"Stop", finished:"Finished", finishedHelp:"Session complete. Well done.", newSession:"New session", invalid:"Please enter values within the indicated ranges.", switchCommand:"Switch position" },
-  he: { install:"התקנה", installTitle:"התקנת היישום", installIos:"ב־iPhone או iPad יש לפתוח את הדף ב־Safari. לחצו על שיתוף, בחרו הוספה למסך הבית, הפעילו פתיחה כיישום אינטרנט ולחצו על הוספה.", installManual:"פתחו את תפריט הדפדפן ובחרו התקנת אפליקציה או הוספה למסך הבית. אם היישום כבר מותקן, פתחו אותו ממסך הבית או מתפריט ההתחלה של Windows.", close:"סגירה", readyLabel:"מוכן", setupTitle:"הגדרת האימון", setupSubtitle:"בחרו את הקצב והתכוננו לתנועה.", numberOfPoses:"מספר תנוחות", poseNumber:"מספר תנוחה", totalTime:"זמן כולל", poseInterval:"זמן בין תנוחות", seconds:"שניות", switchPosition:"החלפת מנח", switchHelp:"הכרזה לאחר השלמת כל סדרה", start:"התחלת אימון", preparing:"מתכוננים", preparingAudio:"מכין קול…", audioError:"הכנת הקול נכשלה. יש להפעיל מחדש את היישום ולנסות שוב.", getReady:"התכוננו", active:"פעיל", switching:"מחליפים מנח", paused:"מושהה", timeRemaining:"זמן שנותר", currentSet:"סדרה נוכחית", pause:"השהיה", resume:"המשך", stop:"עצירה", finished:"הסתיים", finishedHelp:"האימון הושלם. כל הכבוד.", newSession:"אימון חדש", invalid:"יש להזין ערכים בטווחים המוצגים.", switchCommand:"החלף מנח" }
+  en: { install:"Install", shortcut:"Shortcut", installTitle:"Add to your device", installIos:"On iPhone or iPad, open this page in Safari. Tap Share, choose Add to Home Screen, turn on Open as Web App, then tap Add.", installManual:"Open the browser menu and choose Install app or Add to Home screen. If the app is already installed, open it from your home screen or the Windows Start menu.", shortcutInstructions:"In Chrome, tap the three-dot menu, choose Install and create shortcut, then Create shortcut and Add. The shortcut opens the trainer safely in Chrome without installing an APK.", close:"Close", readyLabel:"READY", setupTitle:"Set up your session", setupSubtitle:"Choose your pace, then get ready to move.", numberOfPoses:"Number of poses", poseNumber:"Pose number", totalTime:"Total time", poseInterval:"Time between poses", seconds:"seconds", switchPosition:"Switch position", switchHelp:"Announce after every complete set", start:"Start session", preparing:"Preparing", preparingAudio:"Preparing voice…", audioError:"Voice preparation failed. Please restart the app and try again.", getReady:"Get ready", active:"Active", switching:"Switching", paused:"Paused", timeRemaining:"Time remaining", currentSet:"Current set", pause:"Pause", resume:"Resume", stop:"Stop", finished:"Finished", finishedHelp:"Session complete. Well done.", newSession:"New session", invalid:"Please enter values within the indicated ranges.", switchCommand:"Switch position" },
+  he: { install:"התקנה", shortcut:"קיצור דרך", installTitle:"הוספה למכשיר", installIos:"ב־iPhone או iPad יש לפתוח את הדף ב־Safari. לחצו על שיתוף, בחרו הוספה למסך הבית, הפעילו פתיחה כיישום אינטרנט ולחצו על הוספה.", installManual:"פתחו את תפריט הדפדפן ובחרו התקנת אפליקציה או הוספה למסך הבית. אם היישום כבר מותקן, פתחו אותו ממסך הבית או מתפריט ההתחלה של Windows.", shortcutInstructions:"ב־Chrome לחצו על תפריט שלוש הנקודות, בחרו התקנה ויצירת קיצור דרך, אחר כך יצירת קיצור דרך ולבסוף הוספה. הקיצור יפתח את המאמן בבטחה בתוך Chrome ללא התקנת APK.", close:"סגירה", readyLabel:"מוכן", setupTitle:"הגדרת האימון", setupSubtitle:"בחרו את הקצב והתכוננו לתנועה.", numberOfPoses:"מספר תנוחות", poseNumber:"מספר תנוחה", totalTime:"זמן כולל", poseInterval:"זמן בין תנוחות", seconds:"שניות", switchPosition:"החלפת מנח", switchHelp:"הכרזה לאחר השלמת כל סדרה", start:"התחלת אימון", preparing:"מתכוננים", preparingAudio:"מכין קול…", audioError:"הכנת הקול נכשלה. יש להפעיל מחדש את היישום ולנסות שוב.", getReady:"התכוננו", active:"פעיל", switching:"מחליפים מנח", paused:"מושהה", timeRemaining:"זמן שנותר", currentSet:"סדרה נוכחית", pause:"השהיה", resume:"המשך", stop:"עצירה", finished:"הסתיים", finishedHelp:"האימון הושלם. כל הכבוד.", newSession:"אימון חדש", invalid:"יש להזין ערכים בטווחים המוצגים.", switchCommand:"החלף מנח" }
 };
 
 const numberWords = {
@@ -88,6 +88,7 @@ function applyLanguage() {
   document.documentElement.lang = language;
   document.documentElement.dir = language === "he" ? "rtl" : "ltr";
   document.querySelectorAll("[data-i18n]").forEach(node => { node.textContent = copy[language][node.dataset.i18n]; });
+  elements.installButton.textContent = copy[language][isAndroid() ? "shortcut" : "install"];
   document.querySelectorAll("[data-language]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.language === language)));
 }
 
@@ -411,13 +412,18 @@ elements.stopButton.addEventListener("click", stopSession);
 elements.newSessionButton.addEventListener("click", () => { phase = "idle"; showView("setup"); });
 const isStandalone = () => window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
 const isAppleMobile = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const isAndroid = () => /Android/i.test(navigator.userAgent);
 
 function updateInstallButton() {
   elements.installButton.hidden = isStandalone();
 }
 
 function showInstallInstructions() {
-  elements.installInstructions.textContent = copy[language][isAppleMobile() ? "installIos" : "installManual"];
+  if (isAndroid()) {
+    elements.installInstructions.textContent = copy[language].shortcutInstructions;
+  } else {
+    elements.installInstructions.textContent = copy[language][isAppleMobile() ? "installIos" : "installManual"];
+  }
   if (typeof elements.installDialog.showModal === "function") elements.installDialog.showModal();
   else window.alert(elements.installInstructions.textContent);
 }
@@ -432,6 +438,10 @@ window.addEventListener("appinstalled", () => {
   elements.installButton.hidden = true;
 });
 elements.installButton.addEventListener("click", async () => {
+  if (isAndroid()) {
+    showInstallInstructions();
+    return;
+  }
   if (!deferredInstallPrompt) {
     showInstallInstructions();
     return;

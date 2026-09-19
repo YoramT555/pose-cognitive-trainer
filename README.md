@@ -1,6 +1,6 @@
 # Pose Cognitive Trainer
 
-Current version: **V1.0.2**
+Current version: **V1.0.3**
 
 A responsive English/Hebrew Progressive Web App that presents shuffled pose numbers on a configurable active-time schedule.
 
@@ -19,12 +19,12 @@ Then open `http://localhost:8080`.
 ## Test
 
 ```powershell
-node --test --test-isolation=none tests/core.test.mjs
+node --test --test-isolation=none tests/*.test.mjs
 ```
 
 ## Publish
 
-Upload the contents of this directory to a static HTTPS host such as GitHub Pages. The site can then be installed from Chrome, Edge, or Safari's **Add to Home Screen** command.
+Upload the contents of this directory to a static HTTPS host such as GitHub Pages. The site can then be installed on desktop or added to the iPhone home screen. On Android, use the app's safe shortcut mode to avoid the outdated Chrome WebAPK wrapper warning.
 
 ## Audio
 
