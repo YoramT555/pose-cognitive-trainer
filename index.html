@@ -7,7 +7,8 @@
   <meta name="description" content="A bilingual, timed pose-number cognitive trainer.">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=1.0.1">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css?v=1.0.2">
   <title>Pose Cognitive Trainer</title>
 </head>
 <body>
@@ -16,10 +17,10 @@
       <a class="brand" href="./" aria-label="Pose Cognitive Trainer home">
         <span class="brand-icon" aria-hidden="true">◆</span>
         <span class="brand-name">Pose Cognitive Trainer</span>
-        <span class="app-version">V1.0.1</span>
+        <span class="app-version">V1.0.2</span>
       </a>
       <div class="header-actions">
-        <button id="installButton" class="quiet-button" type="button" hidden data-i18n="install">Install</button>
+        <button id="installButton" class="quiet-button" type="button" data-i18n="install">Install</button>
         <div class="language-picker" role="group" aria-label="Language">
           <button type="button" data-language="en" aria-pressed="true">EN</button>
           <button type="button" data-language="he" aria-pressed="false">עב</button>
@@ -84,6 +85,15 @@
       </section>
     </main>
   </div>
-  <script type="module" src="app.js?v=1.0.1"></script>
+
+  <dialog id="installDialog" class="install-dialog">
+    <form method="dialog">
+      <h2 data-i18n="installTitle">Install the app</h2>
+      <p id="installInstructions"></p>
+      <button class="primary-button" type="submit" value="close" data-i18n="close">Close</button>
+    </form>
+  </dialog>
+
+  <script type="module" src="app.js?v=1.0.2"></script>
 </body>
 </html>

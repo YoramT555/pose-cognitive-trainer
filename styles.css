@@ -27,6 +27,11 @@ button:focus-visible, input:focus-visible { outline: 3px solid color-mix(in srgb
 .language-picker button, .quiet-button { min-width: 42px; min-height: 36px; padding: .35rem .65rem; border: 0; border-radius: 8px; background: transparent; color: var(--text); }
 .language-picker button[aria-pressed="true"] { background: var(--text); color: var(--surface); }
 .quiet-button { border: 1px solid var(--line); }
+.install-dialog { width: min(calc(100% - 2rem), 480px); padding: 0; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); color: var(--text); box-shadow: 0 24px 70px rgb(0 0 0 / .28); }
+.install-dialog::backdrop { background: rgb(10 18 35 / .55); }
+.install-dialog form { padding: 1.4rem; }
+.install-dialog h2 { margin: 0; font-size: 1.4rem; }
+.install-dialog p { margin: .85rem 0 1.2rem; color: var(--muted); line-height: 1.55; }
 .view { padding: clamp(1.2rem, 5vw, 3.2rem); }
 .intro { margin-bottom: 1.6rem; }
 .eyebrow { margin: 0 0 .5rem; color: var(--primary); font-size: .78rem; font-weight: 800; letter-spacing: .12em; }
@@ -84,6 +89,8 @@ input[role="switch"]:checked::after { transform: translateX(22px); }
 @media (max-width: 390px) {
   .app-header { align-items: flex-start; }
   .header-actions { flex-direction: column-reverse; align-items: flex-end; }
+  .brand { gap: .45rem; }
+  .brand-name { max-width: 112px; font-size: .9rem; }
   .main-display { min-height: 190px; }
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }

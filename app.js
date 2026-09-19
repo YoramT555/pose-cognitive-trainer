@@ -5,8 +5,8 @@ const SWITCH_MS = 1000;
 const STORAGE_KEY = "pose-cognitive-trainer-settings-v1";
 
 const copy = {
-  en: { install:"Install", readyLabel:"READY", setupTitle:"Set up your session", setupSubtitle:"Choose your pace, then get ready to move.", numberOfPoses:"Number of poses", poseNumber:"Pose number", totalTime:"Total time", poseInterval:"Time between poses", seconds:"seconds", switchPosition:"Switch position", switchHelp:"Announce after every complete set", start:"Start session", preparing:"Preparing", preparingAudio:"Preparing voice…", audioError:"Voice preparation failed. Please restart the app and try again.", getReady:"Get ready", active:"Active", switching:"Switching", paused:"Paused", timeRemaining:"Time remaining", currentSet:"Current set", pause:"Pause", resume:"Resume", stop:"Stop", finished:"Finished", finishedHelp:"Session complete. Well done.", newSession:"New session", invalid:"Please enter values within the indicated ranges.", switchCommand:"Switch position" },
-  he: { install:"התקנה", readyLabel:"מוכן", setupTitle:"הגדרת האימון", setupSubtitle:"בחרו את הקצב והתכוננו לתנועה.", numberOfPoses:"מספר תנוחות", poseNumber:"מספר תנוחה", totalTime:"זמן כולל", poseInterval:"זמן בין תנוחות", seconds:"שניות", switchPosition:"החלפת מנח", switchHelp:"הכרזה לאחר השלמת כל סדרה", start:"התחלת אימון", preparing:"מתכוננים", preparingAudio:"מכין קול…", audioError:"הכנת הקול נכשלה. יש להפעיל מחדש את היישום ולנסות שוב.", getReady:"התכוננו", active:"פעיל", switching:"מחליפים מנח", paused:"מושהה", timeRemaining:"זמן שנותר", currentSet:"סדרה נוכחית", pause:"השהיה", resume:"המשך", stop:"עצירה", finished:"הסתיים", finishedHelp:"האימון הושלם. כל הכבוד.", newSession:"אימון חדש", invalid:"יש להזין ערכים בטווחים המוצגים.", switchCommand:"החלף מנח" }
+  en: { install:"Install", installTitle:"Install the app", installIos:"On iPhone or iPad, open this page in Safari. Tap Share, choose Add to Home Screen, turn on Open as Web App, then tap Add.", installManual:"Open the browser menu and choose Install app or Add to Home screen. If the app is already installed, open it from your home screen or the Windows Start menu.", close:"Close", readyLabel:"READY", setupTitle:"Set up your session", setupSubtitle:"Choose your pace, then get ready to move.", numberOfPoses:"Number of poses", poseNumber:"Pose number", totalTime:"Total time", poseInterval:"Time between poses", seconds:"seconds", switchPosition:"Switch position", switchHelp:"Announce after every complete set", start:"Start session", preparing:"Preparing", preparingAudio:"Preparing voice…", audioError:"Voice preparation failed. Please restart the app and try again.", getReady:"Get ready", active:"Active", switching:"Switching", paused:"Paused", timeRemaining:"Time remaining", currentSet:"Current set", pause:"Pause", resume:"Resume", stop:"Stop", finished:"Finished", finishedHelp:"Session complete. Well done.", newSession:"New session", invalid:"Please enter values within the indicated ranges.", switchCommand:"Switch position" },
+  he: { install:"התקנה", installTitle:"התקנת היישום", installIos:"ב־iPhone או iPad יש לפתוח את הדף ב־Safari. לחצו על שיתוף, בחרו הוספה למסך הבית, הפעילו פתיחה כיישום אינטרנט ולחצו על הוספה.", installManual:"פתחו את תפריט הדפדפן ובחרו התקנת אפליקציה או הוספה למסך הבית. אם היישום כבר מותקן, פתחו אותו ממסך הבית או מתפריט ההתחלה של Windows.", close:"סגירה", readyLabel:"מוכן", setupTitle:"הגדרת האימון", setupSubtitle:"בחרו את הקצב והתכוננו לתנועה.", numberOfPoses:"מספר תנוחות", poseNumber:"מספר תנוחה", totalTime:"זמן כולל", poseInterval:"זמן בין תנוחות", seconds:"שניות", switchPosition:"החלפת מנח", switchHelp:"הכרזה לאחר השלמת כל סדרה", start:"התחלת אימון", preparing:"מתכוננים", preparingAudio:"מכין קול…", audioError:"הכנת הקול נכשלה. יש להפעיל מחדש את היישום ולנסות שוב.", getReady:"התכוננו", active:"פעיל", switching:"מחליפים מנח", paused:"מושהה", timeRemaining:"זמן שנותר", currentSet:"סדרה נוכחית", pause:"השהיה", resume:"המשך", stop:"עצירה", finished:"הסתיים", finishedHelp:"האימון הושלם. כל הכבוד.", newSession:"אימון חדש", invalid:"יש להזין ערכים בטווחים המוצגים.", switchCommand:"החלף מנח" }
 };
 
 const numberWords = {
@@ -14,7 +14,7 @@ const numberWords = {
   he: ["", "אחת", "שתיים", "שלוש", "ארבע", "חמש", "שש", "שבע", "שמונה", "תשע", "עשר"]
 };
 
-const elements = Object.fromEntries(["setupView","sessionView","finishedView","settingsForm","startButton","poseCount","totalTime","poseInterval","switchEnabled","formError","statusBadge","instruction","mainDisplay","timeRemaining","setProgress","progressBar","pauseButton","stopButton","newSessionButton","installButton"].map(id => [id, document.getElementById(id)]));
+const elements = Object.fromEntries(["setupView","sessionView","finishedView","settingsForm","startButton","poseCount","totalTime","poseInterval","switchEnabled","formError","statusBadge","instruction","mainDisplay","timeRemaining","setProgress","progressBar","pauseButton","stopButton","newSessionButton","installButton","installDialog","installInstructions"].map(id => [id, document.getElementById(id)]));
 
 let language = "en";
 let settings;
@@ -409,11 +409,42 @@ document.querySelectorAll("[data-language]").forEach(button => button.addEventLi
 elements.pauseButton.addEventListener("click", pauseSession);
 elements.stopButton.addEventListener("click", stopSession);
 elements.newSessionButton.addEventListener("click", () => { phase = "idle"; showView("setup"); });
-window.addEventListener("beforeinstallprompt", event => { event.preventDefault(); deferredInstallPrompt = event; elements.installButton.hidden = false; });
-elements.installButton.addEventListener("click", async () => { if (!deferredInstallPrompt) return; deferredInstallPrompt.prompt(); await deferredInstallPrompt.userChoice; deferredInstallPrompt = null; elements.installButton.hidden = true; });
+const isStandalone = () => window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+const isAppleMobile = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+function updateInstallButton() {
+  elements.installButton.hidden = isStandalone();
+}
+
+function showInstallInstructions() {
+  elements.installInstructions.textContent = copy[language][isAppleMobile() ? "installIos" : "installManual"];
+  if (typeof elements.installDialog.showModal === "function") elements.installDialog.showModal();
+  else window.alert(elements.installInstructions.textContent);
+}
+
+window.addEventListener("beforeinstallprompt", event => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  updateInstallButton();
+});
+window.addEventListener("appinstalled", () => {
+  deferredInstallPrompt = null;
+  elements.installButton.hidden = true;
+});
+elements.installButton.addEventListener("click", async () => {
+  if (!deferredInstallPrompt) {
+    showInstallInstructions();
+    return;
+  }
+  deferredInstallPrompt.prompt();
+  const { outcome } = await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  if (outcome === "accepted") elements.installButton.hidden = true;
+});
 document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && phase !== "idle" && phase !== "finished") requestWakeLock(); });
 window.setInterval(updateTimeDisplay, 200);
 if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));
 prefetchAllRecordings().catch(() => { /* Start will retry and display an error if preparation fails. */ });
 loadSettings();
+updateInstallButton();
 showView("setup");
